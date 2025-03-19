@@ -1,4 +1,4 @@
-package com.projet.quizzapp.secutity;
+package com.projet.quizzapp.security;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

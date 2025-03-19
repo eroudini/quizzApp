@@ -3,7 +3,7 @@ package com.projet.quizzapp.services.user;
 
 import com.projet.quizzapp.entities.User;
 import com.projet.quizzapp.repositories.UserRepository;
-import com.projet.quizzapp.secutity.UserSecurity;
+import com.projet.quizzapp.security.UserSecurity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

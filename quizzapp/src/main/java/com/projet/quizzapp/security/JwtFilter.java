@@ -1,4 +1,4 @@
-package com.projet.quizzapp.secutity;
+package com.projet.quizzapp.security;
 
 import com.projet.quizzapp.services.user.CustomUserDetailsService;
 import jakarta.servlet.FilterChain;
