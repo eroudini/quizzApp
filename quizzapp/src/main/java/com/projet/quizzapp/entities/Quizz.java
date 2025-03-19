@@ -4,9 +4,6 @@ import com.projet.quizzapp.dto.QuizzDTO;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
 @Data
 public class Quizz {
@@ -21,11 +18,8 @@ public class Quizz {
     private Long time;
 
     @ManyToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "category_id", nullable = false)
     private Category category;
-
-    @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Question> questions = new ArrayList<>();
 
     public QuizzDTO getDto(){
 
