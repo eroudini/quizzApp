@@ -1,0 +1,32 @@
+package com.projet.quizzapp.entities;
+import  com.projet.quizzapp.entities.Answer;
+
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.awt.*;
+import java.util.List;
+
+@Entity
+@Getter
+@Setter
+public class Question {
+
+    @Id
+    @GeneratedValue
+    private int id;
+<<<<<<< HEAD
+    @OneToMany(mappedBy = "question")
+    private List<Answer> responses;
+
+=======
+    private String question;
+    @OneToMany
+    private List<Answer> category;
+>>>>>>> b1c3696 (entities)
+}
