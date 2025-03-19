@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import Navbar from "./Navbar";
 import axios from "axios";
 import "../styles/login.css";
 
@@ -12,7 +13,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8080/api/login", {
+      const response = await axios.post("http://localhost:8080/auth/login", {
         email,
         password,
       });
@@ -26,6 +27,9 @@ const Login = () => {
   };
 
   return (
+
+    <>
+    <Navbar /> 
     <div className="login-container">
       <div className="login-box">
         <h2>Login</h2>
@@ -51,6 +55,7 @@ const Login = () => {
         <button className="back-button" onClick={() => navigate("/")}>Back</button>
       </div>
     </div>
+  </>
   );
 };
 //ignore
