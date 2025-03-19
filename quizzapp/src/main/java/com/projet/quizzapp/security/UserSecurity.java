@@ -1,4 +1,4 @@
-package com.projet.quizzapp.secutity;
+package com.projet.quizzapp.security;
 
 import com.projet.quizzapp.entities.User;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

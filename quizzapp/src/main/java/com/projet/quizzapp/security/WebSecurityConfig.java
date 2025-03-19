@@ -1,6 +1,5 @@
-package com.projet.quizzapp.secutity;
+package com.projet.quizzapp.security;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,10 +18,13 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
-@RequiredArgsConstructor
-public class WebSecurityConfig{
+public class WebSecurityConfig {
 
     private final JwtFilter jwtFilter;
+
+    public WebSecurityConfig(JwtFilter jwtFilter) {
+        this.jwtFilter = jwtFilter;
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -38,12 +40,12 @@ public class WebSecurityConfig{
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration corsConfig = new CorsConfiguration();
-        corsConfig.addAllowedOrigin("http://localhost:3000");  // Frontend React URL
+        corsConfig.addAllowedOrigin("http://localhost:3000");  // L'adresse de ton frontend React
         corsConfig.addAllowedMethod("GET");
         corsConfig.addAllowedMethod("POST");
         corsConfig.addAllowedMethod("PUT");
         corsConfig.addAllowedMethod("DELETE");
-        corsConfig.addAllowedHeader("*");
+        corsConfig.addAllowedHeader("*");  // Permet tous les en-têtes
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", corsConfig);
@@ -53,9 +55,9 @@ public class WebSecurityConfig{
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
-                .cors().configurationSource(corsConfigurationSource())  // Appliquer la configuration CORS
-                .authorizeRequests(auth -> auth
-                        .requestMatchers("/auth/register", "/auth/login").permitAll()
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))  // Application de la configuration CORS
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/auth/register", "/auth/login", "/api/categories").permitAll()
                         .requestMatchers("/quiz/start", "/quiz/submit", "/score/me").hasRole("JOUEUR")
                         .requestMatchers("/quiz/**", "/users/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
