@@ -17,7 +17,7 @@ public class UserSecurity implements UserDetails {
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return user.getEmail();
     }
 
     @Override
@@ -27,22 +27,22 @@ public class UserSecurity implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;  // Retourner false si l'utilisateur doit être bloqué après expiration
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;  // Retourner false si l'utilisateur doit être bloqué après plusieurs tentatives infructueuses
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;  // Retourner false si les credentials doivent expirer
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return true;  // Retourner false si l'utilisateur doit être désactivé
+        return true;
     }
 
     @Override
@@ -50,7 +50,6 @@ public class UserSecurity implements UserDetails {
         return Collections.singletonList(new SimpleGrantedAuthority(user.getRole()));
     }
 
-    // Accesseur pour l'entité User
     public User getUser() {
         return user;
     }

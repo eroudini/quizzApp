@@ -20,30 +20,19 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody User user) {
-        if (userRepository.existsByEmail(user.getEmail())) {
-            return ResponseEntity.badRequest().body("Email already taken!");
+        if (userRepository.existsByUsername(user.getUsername())) {
+            return ResponseEntity.badRequest().body("Username already taken!");
         }
 
-        String baseUsername = user.getEmail().split("@")[0];
-        String username = baseUsername;
-        int count = 1;
-
-        while (userRepository.existsByUsername(username)) {
-            username = baseUsername + count;
-            count++;
-        }
-
-        user.setUsername(username);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole("JOUEUR");
-
         userRepository.save(user);
-        return ResponseEntity.ok("User registered successfully with username: " + username);
+        return ResponseEntity.ok("User registered successfully!");
     }
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody User user) {
-        UserDetails userDetails = userRepository.findByEmail(user.getEmail())
+        UserDetails userDetails = userRepository.findByUsername(user.getUsername())
                 .map(u -> new UserSecurity(u)).orElseThrow();
 
         String token = jwtUtils.generateToken(userDetails);
