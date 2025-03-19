@@ -16,20 +16,25 @@ const Login = () => {
         email,
         password,
       });
-      if (response.data.success) {
-        localStorage.setItem("token", response.data.token);
+  
+      console.log("Réponse du serveur :", response.data); // Debugging
+  
+      if (response.data) { // Vérifier que le backend renvoie bien un token
+        localStorage.setItem("token", response.data);
         navigate("/categories");
+      } else {
+        console.error("Login failed: No token received");
       }
     } catch (error) {
       console.error("Login failed", error);
     }
   };
+  
 
   return (
     <div className="login-container">
       <div className="login-box">
         <h2>Login</h2>
-        {/* Show success message if redirected from registration */}
         {location.state?.successMessage && (
           <p className="success-message">{location.state.successMessage}</p>
         )}

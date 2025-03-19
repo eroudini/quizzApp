@@ -15,8 +15,13 @@ const Register = () => {
         email,
         password,
       });
+  
+      console.log(response.data); // Check the API response
+  
       if (response.data.success) {
         navigate("/login", { state: { successMessage: "Registration successful" } });
+      } else {
+        console.error("Registration failed:", response.data);
       }
     } catch (error) {
       console.error("Registration failed", error);

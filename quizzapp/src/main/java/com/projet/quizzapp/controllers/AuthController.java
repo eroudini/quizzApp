@@ -10,6 +10,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
@@ -21,7 +24,7 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody User user) {
         if (userRepository.existsByEmail(user.getEmail())) {
-            return ResponseEntity.badRequest().body("Email already taken!");
+            return ResponseEntity.badRequest().body(Map.of("success", false, "message", "Email already taken!"));
         }
 
         String baseUsername = user.getEmail().split("@")[0];
@@ -38,16 +41,31 @@ public class AuthController {
         user.setRole("JOUEUR");
 
         userRepository.save(user);
-        return ResponseEntity.ok("User registered successfully with username: " + username);
+
+        // Renvoyer un objet JSON avec success: true
+        Map<String, Object> response = new HashMap<>();
+        response.put("success", true);
+        response.put("message", "User registered successfully");
+        response.put("username", username);
+
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody User user) {
+    public ResponseEntity<Map<String, Object>> login(@RequestBody User user) {
         UserDetails userDetails = userRepository.findByEmail(user.getEmail())
-                .map(u -> new UserSecurity(u)).orElseThrow();
+                .map(UserSecurity::new)
+                .orElseThrow(() -> new RuntimeException("User not found"));
 
         String token = jwtUtils.generateToken(userDetails);
-        return ResponseEntity.ok(token);
+
+        // Retourner un JSON plutôt qu'une simple chaîne
+        Map<String, Object> response = new HashMap<>();
+        response.put("success", true);
+        response.put("token", token);
+
+        return ResponseEntity.ok(response);
     }
+
 
 }
