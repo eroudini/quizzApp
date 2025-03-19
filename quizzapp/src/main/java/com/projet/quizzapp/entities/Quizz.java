@@ -4,9 +4,6 @@ import com.projet.quizzapp.dto.QuizzDTO;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
 @Data
 public class Quizz {
