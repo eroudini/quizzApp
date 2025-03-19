@@ -34,3 +34,74 @@
 .home-box button:hover {
   background-color: #2563eb;
 }
+
+
+
+/* home.css */
+body {
+  margin: 0; /* Supprime la marge par défaut du body */
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  background-color: #4049a7;
+  color: white;
+  position: fixed; /* Fixe la Navbar en haut de la page */
+  top: 0; /* Positionne la Navbar en haut */
+  left: 0; /* Aligne la Navbar à gauche */
+  z-index: 1000; /* Assure que la Navbar est au-dessus des autres éléments */
+}
+
+.nav-links {
+  margin-right: 5%; /* Déplace les boutons légèrement vers la gauche */
+}
+
+.nav-links button {
+  margin-left: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #555;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-links button:hover {
+  background-color: #643434;
+}
+
+.home-container {
+  padding-top: 80px; /* Ajoute un espace en haut pour éviter que le contenu ne soit caché sous la Navbar */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Utilise min-height au lieu de height pour éviter les problèmes de défilement */
+  background-color: #f0f0f0;
+}
+
+.home-content {
+  text-align: center;
+  max-width: 600px;
+  margin-top: 2rem;
+}
+
+.concept-section {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.concept-section h2 {
+  margin-bottom: 1rem;
+}
+
+.concept-section p {
+  line-height: 1.6;
+}

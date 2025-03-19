@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
 import axios from "axios";
 import "../styles/login.css";
 
@@ -24,6 +25,8 @@ const Register = () => {
   };
 
   return (
+    <>
+    <Navbar /> 
     <div className="login-container">
       <div className="login-box">
         <h2>Register</h2>
@@ -45,6 +48,7 @@ const Register = () => {
         <button className="back-button" onClick={() => navigate("/")}>Back</button>
       </div>
     </div>
+    </>
   );
 };
 //ignore

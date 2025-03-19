@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
 import axios from "axios";
 import "../styles/categories.css";
 
@@ -14,6 +15,9 @@ const Categories = () => {
   }, []);
 
   return (
+
+    <>
+    <Navbar /> 
     <div className="categories-container">
       <h2>Choose a Category</h2>
       <div className="category-list">
@@ -28,6 +32,7 @@ const Categories = () => {
         ))}
       </div>
     </div>
+    </>
   );
 };
 //ignore

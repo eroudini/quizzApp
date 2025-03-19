@@ -1,4 +1,4 @@
-package com.projet.quizzapp.repository;
+package com.projet.quizzapp.repositories;
 
 import com.projet.quizzapp.entities.Question;
 import org.springframework.data.jpa.repository.JpaRepository;

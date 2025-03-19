@@ -36,7 +36,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/register", "/auth/login").permitAll()
+                        .requestMatchers("/auth/register", "/auth/login", "/api/categories", "/api/categories/{id}").permitAll()
                         .requestMatchers("/quiz/start", "/quiz/submit", "/score/me").hasRole("JOUEUR")
                         .requestMatchers("/quiz/**", "/users/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
