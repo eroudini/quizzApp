@@ -1,10 +1,10 @@
-import Navbar from "./Navbar"; // Importez le composant Navbar
+import Navbar from "./Navbar";
 import "../styles/home.css";
 
 const Home = () => {
   return (
     <>
-      <Navbar /> {/* La Navbar est maintenant en dehors du home-container */}
+      <Navbar /> 
       <div className="home-container">
         <div className="home-content">
           <h1>Bienvenue sur Quizz-App</h1>

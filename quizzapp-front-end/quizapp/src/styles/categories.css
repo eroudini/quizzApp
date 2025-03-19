@@ -4,6 +4,8 @@
   align-items: center;
   height: 100vh;
   background-color: #f3f4f6;
+  padding-top: 80px; 
+  text-align: center;
 }
 
 .categories-container h2 {

@@ -7,7 +7,6 @@ const Navbar = ({ onCategoryClick }) => {
   const [categories, setCategories] = useState([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  // Récupérer les catégories depuis la base de données
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -39,8 +38,8 @@ const Navbar = ({ onCategoryClick }) => {
                 <div
                   key={category.id}
                   onClick={() => {
-                    onCategoryClick(category.id); // Appeler la fonction passée en props
-                    setIsDropdownOpen(false); // Fermer le menu déroulant
+                    onCategoryClick(category.id); 
+                    setIsDropdownOpen(false); 
                   }}
                   className="dropdown-item"
                 >
