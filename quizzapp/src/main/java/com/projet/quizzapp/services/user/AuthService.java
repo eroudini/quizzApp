@@ -73,8 +73,6 @@ public class AuthService {
 
         emailService.sendResetPasswordEmail(user.getEmail(), token);
 
-        System.out.println("Token de réinitialisation : " + token);
-
         return "Reset password link sent to your email.";
     }
 
