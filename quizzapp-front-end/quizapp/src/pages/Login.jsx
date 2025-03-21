@@ -16,10 +16,10 @@ const Login = () => {
         email,
         password,
       });
-  
-      console.log("Réponse du serveur :", response.data); // Debugging
-  
-      if (response.data) { // Vérifier que le backend renvoie bien un token
+
+      console.log("Réponse du serveur :", response.data);
+
+      if (response.data) {
         localStorage.setItem("token", response.data);
         navigate("/categories");
       } else {
@@ -29,7 +29,6 @@ const Login = () => {
       console.error("Login failed", error);
     }
   };
-  
 
   return (
     <div className="login-container">
@@ -44,19 +43,36 @@ const Login = () => {
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
           <input
             type="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
-          <button type="submit">Login</button>
+
+          <p className="forgot-password">
+            <span onClick={() => navigate("/forgot-password")} className="link-text">
+              Forgot password?
+            </span>
+          </p>
+
+          <button type="submit" className="login-button">Login</button>
         </form>
+
+        <p className="register-link">
+          Don't have an account?{" "}
+          <span onClick={() => navigate("/register")} className="link-text">
+            Register
+          </span>
+        </p>
+
         <button className="back-button" onClick={() => navigate("/")}>Back</button>
       </div>
     </div>
   );
 };
-//ignore
+
 export default Login;
