@@ -1,13 +1,11 @@
 package com.projet.quizzapp.entities;
-import com.projet.quizzapp.dto.QuestionDTO;
-import  com.projet.quizzapp.entities.Answer;
-
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.awt.*;
+
 import java.util.List;
 
 @Entity
@@ -17,30 +15,27 @@ public class Question {
 
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank
+    private String question;
+    @NotBlank
+    private String subject;
+    @NotBlank
+    private String questionType;
 
-    private String questionText;
 
-    private String optionA;
+    @ElementCollection
+    private List<String> choices;
 
-    private String optionB;
 
-    private String optionC;
-
-    private String optionD;
-
-    private String correctOption;
+    @ElementCollection
+    private List<String> correctAnswers;
 
     @ManyToOne
-    @JoinColumn(name = "quiz_id")
-    private Quizz quiz;
+    private Quizz quizz;
 
 
-    public QuestionDTO getDto() {
-        return null;
-    }
-
-    public void setTest(Quizz quizz) {
-    }
 }
+
+

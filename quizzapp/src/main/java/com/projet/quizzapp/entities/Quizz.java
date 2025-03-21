@@ -1,11 +1,16 @@
 package com.projet.quizzapp.entities;
 
-import com.projet.quizzapp.dto.QuizzDTO;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Data
+@Getter
+@Setter
 public class Quizz {
 
     @Id
@@ -21,16 +26,7 @@ public class Quizz {
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
-    public QuizzDTO getDto(){
-
-        QuizzDTO quizzDTO = new QuizzDTO();
-
-        quizzDTO.setId(id);
-        quizzDTO.setTitle(title);
-        quizzDTO.setDescription(description);
-        quizzDTO.setTime(time);
-
-        return quizzDTO;
-    }
-
+    /*@OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)
+    private List<Question> questions;*/
 }
+

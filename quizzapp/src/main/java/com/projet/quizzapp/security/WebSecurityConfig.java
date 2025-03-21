@@ -52,12 +52,20 @@ public class WebSecurityConfig {
         return source;
     }
 
+
+
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))  // Application de la configuration CORS
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/register", "/auth/login", "/api/categories").permitAll()
+                        .requestMatchers("/auth/register", "/auth/login",
+                                "/api/categories",
+                                "/api/categories/{id}",
+                                "/api/quizzes/create-new-question",
+                                "/api/quizzes/all-questions",
+                                "/api/quizzes/**").permitAll()
                         .requestMatchers("/quiz/start", "/quiz/submit", "/score/me").hasRole("JOUEUR")
                         .requestMatchers("/quiz/**", "/users/**").hasRole("ADMIN")
                         .anyRequest().authenticated()

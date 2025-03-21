@@ -17,7 +17,9 @@ public class QuizzDTO {
 
     private Long time;
 
-    private String category;
+    //private String category;
+
+    private Long categoryId;
 
 
 
