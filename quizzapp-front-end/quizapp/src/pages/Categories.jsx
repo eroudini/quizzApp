@@ -1,57 +1,34 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "../styles/categories.css";
 
-const Navbar = ({ onCategoryClick }) => {
-  const navigate = useNavigate();
+const Categories = () => {
   const [categories, setCategories] = useState([]);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const response = await axios.get("http://localhost:8080/api/categories");
-        setCategories(response.data);
-      } catch (error) {
-        console.error("Erreur lors de la récupération des catégories", error);
-      }
-    };
-
-    fetchCategories();
+    axios.get("http://localhost:8080/api/categories")
+      .then((response) => setCategories(response.data))
+      .catch((error) => console.error("Error fetching categories:", error));
   }, []);
 
+  const handleCategoryClick = (categoryId) => {
+    navigate(`/quizzes/${categoryId}`);
+  };
+
   return (
-    <nav className="navbar">
-      <h1 onClick={() => navigate("/")} style={{ cursor: "pointer" }}>
-        Quizz App
-      </h1>
-      <div className="nav-links">
-        <button onClick={() => navigate("/login")}>Login</button>
-        <button onClick={() => navigate("/register")}>Register</button>
-        <div className="dropdown">
-          <button onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
-            Catégories
+    <div className="container">
+      <h2>Select a Category</h2>
+      <div className="button-container">
+        {categories.map((category) => (
+          <button key={category.id} onClick={() => handleCategoryClick(category.id)}>
+            {category.name}
           </button>
-          {isDropdownOpen && (
-            <div className="dropdown-content">
-              {categories.map((category) => (
-                <div
-                  key={category.id}
-                  onClick={() => {
-                    onCategoryClick(category.id); 
-                    setIsDropdownOpen(false); 
-                  }}
-                  className="dropdown-item"
-                >
-                  {category.name}
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+        ))}
       </div>
-    </nav>
+    </div>
   );
 };
 
-export default Navbar;
+export default Categories;
