@@ -1,6 +1,6 @@
 import { useState } from "react";
+import Navbar from "../components/Navbar";
 import { useNavigate, useLocation } from "react-router-dom";
-import Navbar from "./layout/Navbar";
 import axios from "axios";
 import "../styles/login.css";
 
@@ -79,10 +79,5 @@ const Login = () => {
   </>
   );
 };
-<<<<<<< HEAD
-//ignore
-export default Login;
-=======
 
 export default Login;
->>>>>>> Kilian
