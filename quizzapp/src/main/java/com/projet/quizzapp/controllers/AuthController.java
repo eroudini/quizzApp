@@ -38,6 +38,12 @@ public class AuthController {
         return ResponseEntity.ok(response);
     }
 
+    @GetMapping("/me")
+    public ResponseEntity<User> getAuthenticatedUser() {
+        User user = authService.getAuthenticatedUser();
+        return ResponseEntity.ok(user);
+    }
+
     @PostMapping("/forgot-password")
     public ResponseEntity<String> forgotPassword(@RequestBody ForgotPasswordRequest request) {
         String response = authService.forgotPassword(request);

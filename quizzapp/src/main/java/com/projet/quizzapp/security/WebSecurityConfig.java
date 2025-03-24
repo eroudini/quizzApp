@@ -45,6 +45,8 @@ public class WebSecurityConfig {
         corsConfig.addAllowedMethod("POST");
         corsConfig.addAllowedMethod("PUT");
         corsConfig.addAllowedMethod("DELETE");
+        corsConfig.addAllowedMethod("PATCH");
+        corsConfig.addAllowedMethod("OPTIONS");
         corsConfig.addAllowedHeader("*");
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -64,6 +66,8 @@ public class WebSecurityConfig {
                                 "/auth/reset-password",
                                 "/auth/reset-password/**",
                                 "/api/categories").permitAll()
+
+                        .requestMatchers("/auth/me").authenticated()
                         .requestMatchers("/quiz/start", "/quiz/submit", "/score/me").hasRole("JOUEUR")
                         .requestMatchers("/quiz/**", "/users/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
@@ -73,4 +77,5 @@ public class WebSecurityConfig {
 
         return http.build();
     }
+
 }
