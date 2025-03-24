@@ -63,9 +63,9 @@ public class WebSecurityConfig {
                         .requestMatchers("/auth/register", "/auth/login",
                                 "/api/categories",
                                 "/api/categories/{id}",
-                                "/api/quizzes/create-new-question",
                                 "/api/quizzes/all-questions",
-                                "/api/quizzes/**").permitAll()
+                                "/api/quizzes/**",
+                                "/api/questions/**").permitAll()
                         .requestMatchers("/quiz/start", "/quiz/submit", "/score/me").hasRole("JOUEUR")
                         .requestMatchers("/quiz/**", "/users/**").hasRole("ADMIN")
                         .anyRequest().authenticated()

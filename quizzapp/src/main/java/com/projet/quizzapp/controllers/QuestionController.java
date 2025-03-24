@@ -1,11 +1,15 @@
 package com.projet.quizzapp.controllers;
 
 
+import com.projet.quizzapp.dto.QuestionDTO;
 import com.projet.quizzapp.entities.Question;
+import com.projet.quizzapp.exceptions.QuestionNotFoundException;
+import com.projet.quizzapp.exceptions.QuizzNotFoundException;
 import com.projet.quizzapp.services.question.IQuestionService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,9 +20,9 @@ import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.CREATED;
 
-@CrossOrigin("http://localhost:3000")
+
 @RestController
-@RequestMapping("/api/quizzes")
+@RequestMapping("/api/questions")
 @RequiredArgsConstructor
 public class QuestionController {
 
@@ -27,16 +31,28 @@ public class QuestionController {
 
 
     @PostMapping("/create-new-question")
-    public ResponseEntity<Question> createQuestion(@Valid @RequestBody Question question){
-        Question createdQuestion = questionService.createQuestion(question);
-        return ResponseEntity.status(CREATED).body(createdQuestion);
+    public ResponseEntity<?> createQuestion(@RequestBody QuestionDTO questionDTO){
+
+        try {
+            QuestionDTO createdQuestionDTO = questionService.createQuestion(questionDTO);
+            return ResponseEntity.status(CREATED).body(createdQuestionDTO);
+        } catch (QuestionNotFoundException e) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body( e.getMessage());
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("unexpected error occurred");
+        }
+
+
     }
 
+/*
     @GetMapping("/all-questions")
     public ResponseEntity<List<Question>> getAllQuestions(){
-        List<Question> questions = questionService.getAllQuestions();
-        return ResponseEntity.ok(questions);
+        List<Question> questionDTOS = questionService.getAllQuestions();
+        return ResponseEntity.ok(questionDTOS);
     }
+
+
 
     @GetMapping("/question/{id}")
     public ResponseEntity<Question> getQuestionById(@PathVariable Long id) throws ChangeSetPersister.NotFoundException {
@@ -48,11 +64,11 @@ public class QuestionController {
         }
     }
 
-    @PutMapping("/question/{id}/update")
+    @PutMapping("/questionDTO/{id}/update")
     public ResponseEntity<Question> updateQuestion(
-            @PathVariable Long id, @RequestBody Question question) throws ChangeSetPersister.NotFoundException {
-        Question updatedQuestion = questionService.updateQuestion(id, question);
-        return ResponseEntity.ok(updatedQuestion);
+            @PathVariable Long id, @RequestBody Question questionDTO) throws ChangeSetPersister.NotFoundException {
+        Question updatedQuestionDTO = questionService.updateQuestion(id, questionDTO);
+        return ResponseEntity.ok(updatedQuestionDTO);
     }
 
     @DeleteMapping("/question/{id}/delete")
@@ -69,14 +85,17 @@ public class QuestionController {
     @GetMapping("/quiz/fetch-questions-for-user")
     public ResponseEntity<List<Question>> getQuestionsForUser(
             @RequestParam Integer numOfQuestions, @RequestParam String subject){
-        List<Question> allQuestions = questionService.getQuestionsForUser(numOfQuestions, subject);
+        List<Question> allQuestionDTOS = questionService.getQuestionsForUser(numOfQuestions, subject);
 
-        List<Question> mutableQuestions = new ArrayList<>(allQuestions);
-        Collections.shuffle(mutableQuestions);
+        List<Question> mutableQuestionDTOS = new ArrayList<>(allQuestionDTOS);
+        Collections.shuffle(mutableQuestionDTOS);
 
-        int availableQuestions = Math.min(numOfQuestions, mutableQuestions.size());
-        List<Question> randomQuestions = mutableQuestions.subList(0, availableQuestions);
-        return ResponseEntity.ok(randomQuestions);
+        int availableQuestions = Math.min(numOfQuestions, mutableQuestionDTOS.size());
+        List<Question> randomQuestionDTOS = mutableQuestionDTOS.subList(0, availableQuestions);
+        return ResponseEntity.ok(randomQuestionDTOS);
     }
+
+
+ */
 
 }

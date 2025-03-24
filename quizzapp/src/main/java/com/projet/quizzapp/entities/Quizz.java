@@ -16,6 +16,8 @@ public class Quizz {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(unique = true, nullable = false)
     private String title;
 
     private String description;
@@ -26,7 +28,7 @@ public class Quizz {
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
-    /*@OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)
-    private List<Question> questions;*/
+    @OneToMany(mappedBy = "quizz", cascade = CascadeType.ALL)
+    private List<Question> questionDTOS;
 }
 

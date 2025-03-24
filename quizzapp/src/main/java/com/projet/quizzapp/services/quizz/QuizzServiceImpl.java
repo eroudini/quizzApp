@@ -2,19 +2,13 @@
 package com.projet.quizzapp.services.quizz;
 
 
-import com.projet.quizzapp.dto.QuestionDTO;
 import com.projet.quizzapp.dto.QuizzDTO;
 import com.projet.quizzapp.entities.Category;
-import com.projet.quizzapp.entities.Question;
 import com.projet.quizzapp.entities.Quizz;
 import com.projet.quizzapp.exceptions.QuizzNotFoundException;
 import com.projet.quizzapp.repositories.CategoryRepository;
-import com.projet.quizzapp.repositories.QuestionRepository;
 import com.projet.quizzapp.repositories.QuizzRepository;
 import com.projet.quizzapp.tools.DtoTools;
-import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
-import org.modelmapper.internal.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -97,7 +91,7 @@ public class QuizzServiceImpl implements QuizzService{
 
 
 
-   /* public QuestionDTO addQuestionInQuizz(QuestionDTO dto){
+   /* public Question addQuestionInQuizz(Question dto){
         Optional<Quizz> optionalQuizz = quizzRepository.findById(dto.getId());
 
         if(optionalQuizz.isPresent()){
