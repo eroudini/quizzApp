@@ -1,9 +1,7 @@
 import "../styles/home.css";
-import Navbar from "../components/Navbar";
 const Home = () => {
   return (
     <>
-      <Navbar /> 
       <div className="home-container">
         <div className="home-content">
           <h1>Bienvenue sur Quizz-App</h1>
