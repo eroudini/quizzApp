@@ -1,40 +1,53 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Navbar from "../components/Navbar";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import "../styles/login.css";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
+
+    if (password !== confirmPassword) {
+      setErrorMessage("Passwords do not match!");
+      return;
+    }
+
     try {
       const response = await axios.post("http://localhost:8080/auth/register", {
         email,
         password,
       });
 
-      console.log(response.data); // Vérification de la réponse de l'API
-
       if (response.data.success) {
-        navigate("/login", { state: { successMessage: "Registration successful" } });
+        setSuccessMessage("Registration successful! You can now log in.");
+        setErrorMessage("");
+        setTimeout(() => {
+          navigate("/login", { state: { successMessage: "Registration successful!" } });
+        }, 2000);
       } else {
-        console.error("Registration failed:", response.data);
+        setErrorMessage(response.data.message);
       }
     } catch (error) {
-      console.error("Registration failed", error);
+      console.error("Registration error:", error);
+      setErrorMessage("An error occurred during registration. Please try again.");
     }
   };
 
   return (
-    <>
-    <Navbar /> 
     <div className="login-container">
       <div className="login-box">
         <h2>Register</h2>
+        
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+        {successMessage && <p className="success-message">{successMessage}</p>}
+
         <form onSubmit={handleRegister}>
           <input
             type="email"
@@ -50,20 +63,24 @@ const Register = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
+          <input
+            type="password"
+            placeholder="Confirm Password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+          />
           <button type="submit" className="login-button">Register</button>
         </form>
 
-        <p className="login-link">
-          Already have an account?{" "}
-          <span onClick={() => navigate("/login")} className="link-text">
-            Login
-          </span>
+        <p>
+          Already have an account? <Link to="/login">Login</Link>
         </p>
 
         <button className="back-button" onClick={() => navigate("/")}>Back</button>
+
       </div>
     </div>
-    </>
   );
 };
 
