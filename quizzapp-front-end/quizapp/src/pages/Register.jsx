@@ -16,8 +16,13 @@ const Register = () => {
         email,
         password,
       });
+
+      console.log(response.data); // Vérification de la réponse de l'API
+
       if (response.data.success) {
         navigate("/login", { state: { successMessage: "Registration successful" } });
+      } else {
+        console.error("Registration failed:", response.data);
       }
     } catch (error) {
       console.error("Registration failed", error);
@@ -36,20 +41,30 @@ const Register = () => {
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
           <input
             type="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
-          <button type="submit">Register</button>
+          <button type="submit" className="login-button">Register</button>
         </form>
+
+        <p className="login-link">
+          Already have an account?{" "}
+          <span onClick={() => navigate("/login")} className="link-text">
+            Login
+          </span>
+        </p>
+
         <button className="back-button" onClick={() => navigate("/")}>Back</button>
       </div>
     </div>
     </>
   );
 };
-//ignore
+
 export default Register;

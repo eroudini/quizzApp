@@ -1,53 +1,59 @@
 package com.projet.quizzapp.controllers;
 
+import com.projet.quizzapp.dto.ForgotPasswordRequest;
+import com.projet.quizzapp.dto.LoginRequest;
+import com.projet.quizzapp.dto.RegisterRequest;
+import com.projet.quizzapp.dto.ResetPasswordRequest;
 import com.projet.quizzapp.entities.User;
 import com.projet.quizzapp.repositories.UserRepository;
+import com.projet.quizzapp.responses.AuthResponse;
 import com.projet.quizzapp.security.JwtUtils;
 import com.projet.quizzapp.security.UserSecurity;
+import com.projet.quizzapp.services.user.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
 public class AuthController {
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
-    private final JwtUtils jwtUtils;
+
+    private final AuthService authService;
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody User user) {
-        if (userRepository.existsByEmail(user.getEmail())) {
-            return ResponseEntity.badRequest().body("Email already taken!");
-        }
-
-        String baseUsername = user.getEmail().split("@")[0];
-        String username = baseUsername;
-        int count = 1;
-
-        while (userRepository.existsByUsername(username)) {
-            username = baseUsername + count;
-            count++;
-        }
-
-        user.setUsername(username);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRole("JOUEUR");
-
-        userRepository.save(user);
-        return ResponseEntity.ok("User registered successfully with username: " + username);
+    public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest request) {
+        AuthResponse response = authService.register(request);
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody User user) {
-        UserDetails userDetails = userRepository.findByEmail(user.getEmail())
-                .map(u -> new UserSecurity(u)).orElseThrow();
+    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
+        AuthResponse response = authService.login(request);
+        return ResponseEntity.ok(response);
+    }
 
-        String token = jwtUtils.generateToken(userDetails);
-        return ResponseEntity.ok(token);
+    @PostMapping("/forgot-password")
+    public ResponseEntity<String> forgotPassword(@RequestBody ForgotPasswordRequest request) {
+        String response = authService.forgotPassword(request);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<String> resetPassword(@RequestBody ResetPasswordRequest request) {
+        String response = authService.resetPassword(request);
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/reset-password")
+    public ResponseEntity<?> redirectToResetPasswordPage(@RequestParam("token") String token) {
+        String frontendUrl = "http://localhost:3000/reset-password?token=" + token;
+        return ResponseEntity.status(302).header("Location", frontendUrl).build();
     }
 
 }
