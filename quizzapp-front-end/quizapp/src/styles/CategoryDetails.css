@@ -1,46 +1,49 @@
-/* categoryDetail.css */
-.category-detail-container {
-    padding: 2rem;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
-  .category-detail-container h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .category-detail-container p {
-    font-size: 1.2rem;
-    color: #555;
-  }
-  
-  .quiz-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 2rem;
-  }
-  
-  .quiz-card {
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .quiz-card:hover {
-    background-color: #f0f0f0;
-  }
-  
-  .quiz-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .quiz-card p {
-    font-size: 1rem;
-    color: #666;
-  }
+div {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+/* Style pour le titre */
+h2 {
+  color: #2c3e50;
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 10px;
+}
+
+/* Style pour les paragraphes */
+p {
+  font-size: 16px;
+  color: #34495e;
+  margin: 10px 0;
+  line-height: 1.6;
+}
+
+/* Style pour les labels (strong) */
+strong {
+  color: #3498db;
+  font-weight: bold;
+}
+
+/* Style pour le conteneur principal */
+.container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+/* Style pour le Navbar (ajustez selon votre composant Navbar) */
+Navbar {
+  background-color: #3498db;
+  color: white;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

@@ -1,10 +1,11 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css"
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Categories from "./Categories";
-import CategoryDetail from "./CategoryDetail";
-import Quiz from "./quizz";
+import Categories from "./pages/Categories";
+import CategoryDetail from "./pages/CategoryDetails";
+import Quizz from "./pages/Quizz";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
 
         <Route path="/categories/:id" element={<CategoryDetail />} />
 
-        <Route path="/quizz/:id" element={<Quiz />} />
+        <Route path="/quizz/:id" element={<Quizz />} />
       </Routes>
     </Router>
   );
