@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.Map;
 
-@CrossOrigin("http://localhost:5173")
+
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
@@ -37,6 +37,12 @@ public class AuthController {
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
         AuthResponse response = authService.login(request);
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/me")
+    public ResponseEntity<User> getAuthenticatedUser() {
+        User user = authService.getAuthenticatedUser();
+        return ResponseEntity.ok(user);
     }
 
     @PostMapping("/forgot-password")
