@@ -18,7 +18,7 @@ import java.util.Optional;
 import static org.springframework.http.HttpStatus.CREATED;
 
 
-@CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*")
+//@CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/quizzes")
 @RequiredArgsConstructor

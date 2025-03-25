@@ -8,51 +8,20 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.navbar-container {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    justify-content: space-between;
-}
-
-.navbar-logo-link {
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-    text-decoration: none;
-    transition: 0.3s ease;
-}
-
-.navbar-logo-link:hover {
-    color: #ffd700;
-}
-
-.navbar-links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    padding: 0;
-    margin: 0;
-}
-
-.navbar-item {
-    position: relative;
+.navbar-nav {
+    margin: auto;
 }
 
 .navbar-link {
     color: white;
     text-decoration: none;
     font-size: 16px;
-    font-weight: 500;
-    background: none;
-    border: none;
-    cursor: pointer;
-    transition: 0.3s ease;
     padding: 8px 12px;
 }
 
-.navbar-link:hover {
+.navbar-link:hover, .nav-link.active {
     color: #ffd700;
+    font-weight: bold;
 }
 
 .navbar-auth {
@@ -67,13 +36,22 @@
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.3s ease;
     text-decoration: none;
-    display: inline-block;
+    transition: 0.3s ease;
 }
 
 .navbar-btn:hover {
     opacity: 0.8;
+}
+
+.navbar-btn.login {
+    background-color: #007bff;
+    color: white;
+}
+
+.navbar-btn.register {
+    background-color: #28a745;
+    color: white;
 }
 
 .navbar-btn.logout {
@@ -81,39 +59,40 @@
     color: white;
 }
 
-.navbar-btn.login {
-    background-color: blue;
-    color: white;
+/* Menu utilisateur */
+.user-menu {
+    position: relative;
 }
 
-.navbar-btn.register {
-    background-color: green;
-    color: white;
+.user-menu-toggle {
+    background-color: transparent;
+    color: rgb(0, 0, 0);
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
 }
 
-.hidden {
-    display: none !important;
-}
-
-.dropdown-content {
+.user-dropdown {
     position: absolute;
+    right: 0;
+    top: 100%;
     background-color: white;
     color: black;
-    min-width: 150px;
+    min-width: 160px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     padding: 10px;
-    top: 40px;
-    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     z-index: 1000;
 }
 
-.dropdown-item {
-    padding: 8px;
-    cursor: pointer;
-    transition: 0.3s ease;
+.user-dropdown p {
+    margin: 5px 0;
 }
 
-.dropdown-item:hover {
-    background-color: #f1f1f1;
+.user-dropdown .logout {
+    width: 100%;
+    margin-top: 10px;
 }

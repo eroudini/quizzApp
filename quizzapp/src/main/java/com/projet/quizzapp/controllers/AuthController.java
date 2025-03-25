@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.Map;
 
-@CrossOrigin("http://localhost:5173")
+
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor

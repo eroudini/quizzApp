@@ -1,8 +1,51 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import axios from "axios";
 import "../styles/navbar.css";
 
 const Navbar = () => {
+    const navigate = useNavigate();
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [user, setUser] = useState(null);
+    const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
+
+    useEffect(() => {
+        const checkAuth = () => {
+            const token = localStorage.getItem("token");
+            if (token) {
+                axios.get("http://localhost:8080/auth/me", {
+                    headers: { Authorization: `Bearer ${token}` },
+                })
+                .then(response => {
+                    setIsAuthenticated(true);
+                    setUser(response.data);
+                })
+                .catch(error => {
+                    console.error("Token invalide ou expiré", error);
+                    localStorage.removeItem("token");
+                    setIsAuthenticated(false);
+                });
+            } else {
+                setIsAuthenticated(false);
+            }
+        };
+
+        checkAuth();
+        window.addEventListener("authChange", checkAuth);
+
+        return () => {
+            window.removeEventListener("authChange", checkAuth);
+        };
+    }, []);
+
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        window.dispatchEvent(new Event("authChange"));
+        setUser(null);
+        setIsAuthenticated(false);
+        navigate("/login");
+    };
+
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary px-5 shadow sticky-top">
             <div className="container-fluid">
@@ -20,8 +63,7 @@ const Navbar = () => {
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav ml-auto">
-                  
+                    <ul className="navbar-nav mx-auto">
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/ranking">
                                 Ranking
@@ -38,13 +80,32 @@ const Navbar = () => {
                             </NavLink>
                         </li>
                     </ul>
-                    <div className="navbar-auth ms-auto">
-                        <NavLink to="/login" className="navbar-btn">
-                            Login
-                        </NavLink>
-                        <NavLink to="/register" className="navbar-btn">
-                            Register
-                        </NavLink>
+
+                    <div className="navbar-auth">
+                        {!isAuthenticated ? (
+                            <>
+                                <NavLink to="/login" className="navbar-btn login">Login</NavLink>
+                                <NavLink to="/register" className="navbar-btn register">Register</NavLink>
+                            </>
+                        ) : (
+                            <div className="user-menu">
+                                <button 
+                                    className="navbar-btn user-menu-toggle"
+                                    onClick={() => setIsUserDropdownOpen(!isUserDropdownOpen)}
+                                >
+                                    {user?.username} <span>▼</span>
+                                </button>
+                                {isUserDropdownOpen && (
+                                    <div className="user-dropdown">
+                                        <p><strong>{user?.username}</strong></p>
+                                        <p>{user?.email}</p>
+                                        <button onClick={handleLogout} className="navbar-btn logout">
+                                            Logout
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
