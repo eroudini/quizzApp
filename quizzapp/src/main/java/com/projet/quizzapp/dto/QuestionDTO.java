@@ -1,21 +1,13 @@
 package com.projet.quizzapp.dto;
 
-import com.projet.quizzapp.entities.Question;
 import lombok.Data;
+import java.util.List;
 
 @Data
 public class QuestionDTO {
     private Long id;
-
-    private Question question;
-
-    private boolean isMultipleChoice;
-
-    private int orderNumber;
-
-
-    private Long quizzId;
-
-
-
+    private String text;
+    private Long quizId;
+    private List<AnswerDTO> answers; // Include answers in the response
 }
+
