@@ -34,7 +34,7 @@ const Navbar = () => {
                         </li>
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/quiz-stepper">
-                                Take Quiz
+                                Jouer
                             </NavLink>
                         </li>
                     </ul>
