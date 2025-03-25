@@ -21,16 +21,7 @@ const Navbar = () => {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav ml-auto">
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="/home">
-                                Home
-                            </NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="/categories">
-                                Categories
-                            </NavLink>
-                        </li>
+                  
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/ranking">
                                 Ranking
