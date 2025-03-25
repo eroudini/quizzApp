@@ -1,5 +1,6 @@
 import { useState } from "react";
-import Navbar from "../components/Navbar";
+import React from 'react'
+import { Link } from 'react-router-dom'
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import "../styles/login.css";
@@ -34,7 +35,7 @@ const Login = () => {
   return (
 
     <>
-    <Navbar /> 
+     
     <div className="login-container">
       <div className="login-box">
         <h2>Login</h2>

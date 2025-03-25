@@ -4,7 +4,7 @@ import "../styles/navbar.css";
 
 const Navbar = () => {
     return (
-        <nav className="navbar navbar-expand-lg bg-body-tertiary px-5 shadow sticky-top">
+        <nav className="navbar navbar-expand-lg bg-body-tertiary px-5 shadow sticky-top navbar bg-primary" data-bs-theme="dark">
             <div className="container-fluid">
                 <NavLink className="navbar-brand" to="/">
                     Quiz App
