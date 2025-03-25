@@ -11,16 +11,20 @@ import java.util.Optional;
 
 public interface IQuestionService {
 
-    QuestionDTO createQuestion(QuestionDTO questionDTO) throws Exception;
+    Question createQuestion(Question question);
 
-    List<QuestionDTO> getAllQuestions(Long quizzId) throws Exception;
+    List<Question> getAllQuestions();
 
-    QuestionDTO getQuestionById(Long id) throws Exception;
+    Optional<Question> getQuestionById(Long id);
 
-    //Question updateQuestion(Long id, QuestionDTO questionDTO) throws ChangeSetPersister.NotFoundException;
+    List<String> getAllSubjects();
 
-    //void  deleteQuestion(Long id);
+    Question updateQuestion(Long id, Question question) throws ChangeSetPersister.NotFoundException;
 
-    //List<Question> getQuestionsForUser(Integer numOfQuestions, String subject);
+    void  deleteQuestion(Long id);
+
+    List<Question> getQuestionsForUser(Integer numOfQuestions, String subject);
+
 
 }
+
