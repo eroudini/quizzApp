@@ -2,13 +2,16 @@ package com.projet.quizzapp.controllers;
 
 import com.projet.quizzapp.dto.CategoryDTO;
 import com.projet.quizzapp.services.category.CategoryService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin("http://localhost:5173")
 @RestController
 @RequestMapping("/api/categories")
+@RequiredArgsConstructor
 public class CategoryController {
 
     @Autowired

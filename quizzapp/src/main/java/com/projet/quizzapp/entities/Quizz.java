@@ -28,7 +28,7 @@ public class Quizz {
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
-    @OneToMany(mappedBy = "quizz", cascade = CascadeType.ALL)
-    private List<Question> questionDTOS;
+    /*@OneToMany(mappedBy = "quizz", cascade = CascadeType.ALL)
+    private List<Question> questionDTOS;*/
 }
 

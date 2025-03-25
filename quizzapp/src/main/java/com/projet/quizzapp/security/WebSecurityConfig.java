@@ -57,7 +57,6 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
-                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/register",
                                 "/auth/login",
@@ -79,4 +78,6 @@ public class WebSecurityConfig {
 
         return http.build();
     }
+
+
 }

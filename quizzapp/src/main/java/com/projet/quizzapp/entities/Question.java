@@ -2,31 +2,33 @@ package com.projet.quizzapp.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
+import java.util.List;
+
+
 @Getter
 @Setter
-@Data
+@Entity
 public class Question {
-
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @NotBlank
     private String question;
-
-    private boolean isMultipleChoice;
-
-    private int orderNumber;
-
-    @ManyToOne
-    private Quizz quizz;
+    @NotBlank
+    private String subject;
+    @NotBlank
+    private String questionType;
 
 
+    @ElementCollection
+    private List<String> choices;
+
+
+    @ElementCollection
+    private List<String> correctAnswers;
 }
+
 
 
