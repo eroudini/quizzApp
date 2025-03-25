@@ -2,8 +2,6 @@ package com.projet.quizzapp.controllers;
 
 import com.projet.quizzapp.dto.AnswerDTO;
 import com.projet.quizzapp.entities.Answer;
-import com.projet.quizzapp.exceptions.AnswerNotFoundException;
-import com.projet.quizzapp.exceptions.QuestionNotFoundException;
 import com.projet.quizzapp.services.answer.IAnswerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

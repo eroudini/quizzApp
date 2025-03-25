@@ -5,8 +5,6 @@ import com.projet.quizzapp.dto.QuestionDTO;
 import com.projet.quizzapp.entities.Answer;
 import com.projet.quizzapp.entities.Question;
 import com.projet.quizzapp.entities.Quizz;
-import com.projet.quizzapp.exceptions.QuestionNotFoundException;
-import com.projet.quizzapp.exceptions.QuizzNotFoundException;
 import com.projet.quizzapp.repositories.QuestionRepository;
 import com.projet.quizzapp.repositories.QuizzRepository;
 import com.projet.quizzapp.tools.DtoTools;

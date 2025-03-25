@@ -3,8 +3,6 @@ package com.projet.quizzapp.services.answer;
 import com.projet.quizzapp.dto.AnswerDTO;
 import com.projet.quizzapp.entities.Answer;
 import com.projet.quizzapp.entities.Question;
-import com.projet.quizzapp.exceptions.AnswerNotFoundException;
-import com.projet.quizzapp.exceptions.QuestionNotFoundException;
 import com.projet.quizzapp.repositories.AnswerRepository;
 import com.projet.quizzapp.repositories.QuestionRepository;
 import lombok.RequiredArgsConstructor;

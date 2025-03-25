@@ -2,7 +2,6 @@ package com.projet.quizzapp.controllers;
 
 import com.projet.quizzapp.dto.QuizzDTO;
 import com.projet.quizzapp.entities.Quizz;
-import com.projet.quizzapp.exceptions.QuizzNotFoundException;
 import com.projet.quizzapp.services.quizz.QuizzService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
