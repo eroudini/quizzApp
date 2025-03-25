@@ -40,9 +40,8 @@ public class AuthController {
     }
 
     @GetMapping("/me")
-    public ResponseEntity<User> getAuthenticatedUser() {
-        User user = authService.getAuthenticatedUser();
-        return ResponseEntity.ok(user);
+    public ResponseEntity<Map<String, Object>> getAuthenticatedUser() {
+        return ResponseEntity.ok(authService.getAuthenticatedUser());
     }
 
     @PostMapping("/forgot-password")
