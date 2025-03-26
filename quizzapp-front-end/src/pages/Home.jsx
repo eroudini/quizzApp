@@ -14,7 +14,7 @@ const Home = () => {
         />
       </header>
 
-      <div className="home-container mt-5">
+      <div className="home-container">
         <div className="home-content">
           <h1>Bienvenue sur Quizz-App</h1>
           <section className="concept-section">

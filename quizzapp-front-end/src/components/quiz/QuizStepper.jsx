@@ -110,7 +110,7 @@ import { getSubjects } from "../../../utils/QuizService"
 		return (
 			<section className="mt-5">
 				<h3 style={{ color: "GrayText" }} className="mb-4">
-					Welcome to quiz online
+					Sa te dit une partie de quiz ? 🤩
 				</h3>
 				{renderProgressBar()}
 				<div className="card">

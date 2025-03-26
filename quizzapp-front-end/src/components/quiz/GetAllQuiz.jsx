@@ -47,7 +47,7 @@ const GetAllQuiz = () => {
 		<section className="container">
 			<div className="row mt-5">
 				<div className="col-md-6 mb-2 md-mb-0" style={{ color: "GrayText" }}>
-					<h4>Toute les quizz</h4>
+					<h4>Tout les quizz</h4>
 				</div>
 				<div className="col-md-4 d-flex justify-content-end">
 					<Link to={"/create-quiz"}>

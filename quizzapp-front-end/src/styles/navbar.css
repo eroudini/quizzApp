@@ -1,59 +1,98 @@
 .navbar {
-    background-color: #333;
-    padding: 10px 20px;
-  }
-  
-  .navbar-container {
+    background-color: #2c1a66;
+    color: white;
+    padding: 10px 5px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-  
-  .navbar-logo {
-    font-size: 24px;
-  }
-  
-  .navbar-logo-link {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-nav {
+    margin: auto;
+}
+
+.navbar-link {
     color: white;
     text-decoration: none;
+    font-size: 16px;
+    padding: 8px 12px;
+}
+
+.navbar-link:hover, .nav-link.active {
+    color: #ffd700;
     font-weight: bold;
-  }
-  
-  .navbar-links {
+}
+
+.navbar-auth {
     display: flex;
-    list-style: none;
-    margin: 0;
-  }
-  
-  .navbar-item {
-    margin-right: 20px;
-  }
-  
-  .navbar-link {
-    color: white;
+    gap: 15px;
+}
+
+.navbar-btn {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
     text-decoration: none;
-  }
-  
-  .navbar-link:hover {
-    text-decoration: underline;
-  }
-  
-  .navbar-auth {
-    display: flex;
-  }
-  
-  .navbar-btn {
+    transition: 0.3s ease;
+}
+
+.navbar-btn:hover {
+    opacity: 0.8;
+}
+
+.navbar-btn.login {
     background-color: #007bff;
     color: white;
-    padding: 8px 12px;
+}
+
+.navbar-btn.register {
+    background-color: #28a745;
+    color: white;
+}
+
+.navbar-btn.logout {
+    background-color: red;
+    color: white;
+}
+
+/* Menu utilisateur */
+.user-menu {
+    position: relative;
+}
+
+.user-menu-toggle {
+    background-color: transparent;
+    color: rgb(0, 0, 0);
     border: none;
-    border-radius: 4px;
+    font-size: 16px;
     cursor: pointer;
-    margin-left: 10px;
-    text-decoration: none;
-  }
-  
-  .navbar-btn:hover {
-    background-color: #0056b3;
-  }
-  
+}
+
+.user-dropdown {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: white;
+    color: black;
+    min-width: 160px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000;
+}
+
+.user-dropdown p {
+    margin: 5px 0;
+}
+
+.user-dropdown .logout {
+    width: 100%;
+    margin-top: 10px;
+}
