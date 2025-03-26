@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "../styles/login.css";
+import "../styles/reset.css";
 
 const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState("");
@@ -16,7 +16,7 @@ const ResetPassword = () => {
     if (tokenFromUrl) {
       setToken(tokenFromUrl);
     } else {
-      setMessage("Invalid or missing token.");
+      setMessage({ text: "Invalid or missing token.", type: "error" });
     }
   }, []);
 
@@ -24,7 +24,7 @@ const ResetPassword = () => {
     e.preventDefault();
 
     if (newPassword !== confirmPassword) {
-      setMessage("Passwords do not match!");
+      setMessage({ text: "Passwords do not match!", type: "error" });
       return;
     }
 
@@ -34,19 +34,23 @@ const ResetPassword = () => {
         newPassword,
       });
 
-      setMessage(response.data);
+      setMessage({ text: response.data, type: "success" });
       setTimeout(() => navigate("/login"), 3000);
     } catch (error) {
-      setMessage("Error resetting password.");
+      setMessage({ text: "Error resetting password.", type: "error" });
       console.error("Reset password error:", error);
     }
   };
 
   return (
-    <div className="login-container">
-      <div className="login-box">
+    <div className="reset-container">
+      <div className="reset-box">
         <h2>Reset Password</h2>
-        {message && <p className="info-message">{message}</p>}
+        {message && (
+          <p className={`info-message ${message.type}`}>
+            {message.text}
+          </p>
+        )}
         <form onSubmit={handleResetPassword}>
           <input
             type="password"
@@ -62,11 +66,11 @@ const ResetPassword = () => {
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
-          <button type="submit" className="login-button">Submit</button>
+          <button type="submit" className="reset-button">Submit</button>
         </form>
         <p>
-        <button className="back-button" onClick={() => navigate("/login")}>Back to Login</button>
-      </p>
+          <button className="back-button" onClick={() => navigate("/login")}>Back to Login</button>
+        </p>
       </div>
     </div>
   );

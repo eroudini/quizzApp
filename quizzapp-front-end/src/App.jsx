@@ -21,14 +21,12 @@ function App() {
 			<Router>
 				<Navbar />
 				<Routes>
-
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
-
 					<Route path="/" element={<Home />} />
+					<Route path="/login" element={<Login />} />
+					<Route path="/register" element={<Register />} />
+					<Route path="/forgot-password" element={<ForgotPassword />} />
+					<Route path="/reset-password" element={<ResetPassword />} />
+
 					<Route path="/quiz-stepper" element={<QuizStepper />} />
 					<Route path="/take-quiz" element={<Quiz />} />
 					<Route path="/admin" element={<Admin />} />

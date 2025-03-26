@@ -33,53 +33,52 @@ const Login = () => {
   };
 
   return (
-
     <>
-    <div className="login-container">
-      <div className="login-box">
-        <h2>Login</h2>
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
+      <div className="login-container">
+        <div className="login-box">
+          <h2>Login</h2>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
 
-        {location.state?.successMessage && (
-          <p className="success-message">{location.state.successMessage}</p>
-        )}
+          {location.state?.successMessage && (
+            <p className="success-message">{location.state.successMessage}</p>
+          )}
 
-        <form onSubmit={handleLogin}>
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+          <form onSubmit={handleLogin}>
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
 
-          <p className="forgot-password">
-            <span onClick={() => navigate("/forgot-password")} className="link-text">
-              Forgot password?
+            <p className="forgot-password">
+              <span onClick={() => navigate("/forgot-password")} className="link-text">
+                Forgot password?
+              </span>
+            </p>
+
+            <button type="submit" className="login-button">Login</button>
+          </form>
+
+          <p className="register-link">
+            Don't have an account?{" "}
+            <span onClick={() => navigate("/register")} className="link-text">
+              Register
             </span>
           </p>
 
-          <button type="submit" className="login-button">Login</button>
-        </form>
-
-        <p className="register-link">
-          Don't have an account?{" "}
-          <span onClick={() => navigate("/register")} className="link-text">
-            Register
-          </span>
-        </p>
-
-        <button className="back-button" onClick={() => navigate("/")}>Back</button>
+          <button className="back-button" onClick={() => navigate("/")}>Back</button>
+        </div>
       </div>
-    </div>
-  </>
+    </>
   );
 };
 
