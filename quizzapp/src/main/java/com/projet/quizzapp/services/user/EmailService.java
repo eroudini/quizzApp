@@ -11,6 +11,9 @@ public class EmailService {
 
     private final JavaMailSender mailSender;
 
+    @Value("${spring.mail.username}")
+    private String fromEmail;
+
     public void sendResetPasswordEmail(String to, String resetToken) {
         String subject = "Password Reset Request";
         String text = "To reset your password, please click the following link:\n"
@@ -20,7 +23,7 @@ public class EmailService {
         message.setTo(to);
         message.setSubject(subject);
         message.setText(text);
-        message.setFrom("kilianrsx@gmail.com"); // Remplacer par ton adresse d'expéditeur
+        message.setFrom(fromEmail); // Remplacer par ton adresse d'expéditeur
 
         mailSender.send(message);
     }
