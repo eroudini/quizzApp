@@ -14,6 +14,7 @@ import Login from "./pages/Login"
 import Register from "./pages/Register"
 import ForgotPassword from "./pages/ForgotPassword"
 import ResetPassword from "./pages/ResetPassword"
+import ConfirmDeleteAccount from "./pages/ConfirmDeleteAccount"
 
 function App() {
 	return (
@@ -26,6 +27,7 @@ function App() {
 					<Route path="/register" element={<Register />} />
 					<Route path="/forgot-password" element={<ForgotPassword />} />
 					<Route path="/reset-password" element={<ResetPassword />} />
+					<Route path="/confirm-delete-account" element={<ConfirmDeleteAccount />} />
 
 					<Route path="/quiz-stepper" element={<QuizStepper />} />
 					<Route path="/take-quiz" element={<Quiz />} />

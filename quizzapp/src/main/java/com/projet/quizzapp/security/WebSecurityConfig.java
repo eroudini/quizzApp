@@ -70,7 +70,7 @@ public class WebSecurityConfig {
                                 "/api/quizzes/all-questions",
                                 "/api/quizzes/**",
                                 "/api/questions/**").permitAll()
-                        .requestMatchers("/auth/me").authenticated()
+                        .requestMatchers("/auth/me", "/auth/delete-account").authenticated()
                         .requestMatchers("/quiz/start", "/quiz/submit", "/score/me").hasRole("JOUEUR")
                         .requestMatchers("/quiz/**", "/users/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
