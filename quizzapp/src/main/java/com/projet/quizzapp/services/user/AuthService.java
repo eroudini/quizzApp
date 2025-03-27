@@ -107,4 +107,16 @@ public class AuthService {
         return "Password reset successfully!";
     }
 
+    public void deleteAccount(String password) {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+
+        if (!passwordEncoder.matches(password, user.getPassword())) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Incorrect password");
+        }
+
+        userRepository.delete(user);
+    }
+
 }

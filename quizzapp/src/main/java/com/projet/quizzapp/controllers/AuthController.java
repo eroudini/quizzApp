@@ -1,9 +1,6 @@
 package com.projet.quizzapp.controllers;
 
-import com.projet.quizzapp.dto.ForgotPasswordRequest;
-import com.projet.quizzapp.dto.LoginRequest;
-import com.projet.quizzapp.dto.RegisterRequest;
-import com.projet.quizzapp.dto.ResetPasswordRequest;
+import com.projet.quizzapp.dto.*;
 import com.projet.quizzapp.entities.User;
 import com.projet.quizzapp.repositories.UserRepository;
 import com.projet.quizzapp.responses.AuthResponse;
@@ -58,8 +55,15 @@ public class AuthController {
 
     @GetMapping("/reset-password")
     public ResponseEntity<?> redirectToResetPasswordPage(@RequestParam("token") String token) {
-        String frontendUrl = "http://localhost:3000/reset-password?token=" + token;
+        String frontendUrl = "http://localhost:5173/reset-password?token=" + token;
         return ResponseEntity.status(302).header("Location", frontendUrl).build();
+    }
+
+    @DeleteMapping("/delete-account")
+    public ResponseEntity<String> deleteAccount(@RequestBody DeleteAccountRequest request) {
+        String password = request.getPassword();
+        authService.deleteAccount(password);
+        return ResponseEntity.ok("Account deleted successfully");
     }
 
 }

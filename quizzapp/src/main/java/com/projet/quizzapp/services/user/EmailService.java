@@ -1,6 +1,7 @@
 package com.projet.quizzapp.services.user;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class EmailService {
         message.setTo(to);
         message.setSubject(subject);
         message.setText(text);
-        message.setFrom(fromEmail); // Remplacer par ton adresse d'expéditeur
+        message.setFrom(fromEmail);
 
         mailSender.send(message);
     }

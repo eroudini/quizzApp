@@ -115,6 +115,12 @@ const Navbar = () => {
                     >
                       Logout
                     </button>
+                    <button
+                      onClick={() => navigate("/confirm-delete-account")}
+                      className="navbar-btn delete-account"
+                    >
+                      Delete account
+                    </button>
                   </div>
                 )}
               </div>

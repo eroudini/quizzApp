@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
-import "../styles/home.css";
+import "../styles/register.css";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -41,10 +41,10 @@ const Register = () => {
   };
 
   return (
-    <div className="login-container">
-      <div className="login-box">
+    <div className="register-container">
+      <div className="register-box">
         <h2>Register</h2>
-        
+
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         {successMessage && <p className="success-message">{successMessage}</p>}
 
@@ -70,7 +70,7 @@ const Register = () => {
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
-          <button type="submit" className="login-button">Register</button>
+          <button type="submit" className="register-button">Register</button>
         </form>
 
         <p>

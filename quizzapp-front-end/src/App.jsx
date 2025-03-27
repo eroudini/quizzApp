@@ -9,11 +9,12 @@ import QuizResult from "./components/quiz/QuizResult"
 import GetAllQuiz from "./components/quiz/GetAllQuiz"
 import AddQuestion from "./components/question/AddQuestion"
 import UpdateQuestion from "./components/question/UpdateQuestion"
-import Admin from "./Admin"
+import Admin from "./pages/Admin"
 import Login from "./pages/Login"
 import Register from "./pages/Register"
 import ForgotPassword from "./pages/ForgotPassword"
 import ResetPassword from "./pages/ResetPassword"
+import ConfirmDeleteAccount from "./pages/ConfirmDeleteAccount"
 
 function App() {
 	return (
@@ -21,14 +22,13 @@ function App() {
 			<Router>
 				<Navbar />
 				<Routes>
-
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
-
 					<Route path="/" element={<Home />} />
+					<Route path="/login" element={<Login />} />
+					<Route path="/register" element={<Register />} />
+					<Route path="/forgot-password" element={<ForgotPassword />} />
+					<Route path="/reset-password" element={<ResetPassword />} />
+					<Route path="/confirm-delete-account" element={<ConfirmDeleteAccount />} />
+
 					<Route path="/quiz-stepper" element={<QuizStepper />} />
 					<Route path="/take-quiz" element={<Quiz />} />
 					<Route path="/admin" element={<Admin />} />

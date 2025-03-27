@@ -3,15 +3,15 @@ import { Link } from 'react-router-dom'
 
 const Admin = () => {
 	return (
-		<section className="container mt-7">
-			<h2 className="mt-5">Bievenue sur la page Admin</h2>
+		<section className="container">
+			<h2 className="mt-5">Bienvenue sur la page Admin</h2>
 			<hr />
 			<nav className="nav flex-column">
 				<Link to={"/create-quiz"} className="nav-link">
-					Créer un nouveau quiz
+					Crée un nouveau quiz
 				</Link>
 				<Link to={"/all-quizzes"} className="nav-link">
-					Gérer un quiz
+					Gérér un quiz existant
 				</Link>
 			</nav>
 		</section>

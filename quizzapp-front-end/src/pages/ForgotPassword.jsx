@@ -1,32 +1,45 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "../styles/login.css";
+import "../styles/forgot.css";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleForgotPassword = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setMessage("");
+
     try {
       const response = await axios.post("http://localhost:8080/auth/forgot-password", {
         email,
       });
-      
-      setMessage(response.data);
+
+      setLoading(false);
+      setMessage({ text: response.data, type: "success" });
     } catch (error) {
-      setMessage("Error sending reset link.");
+      setLoading(false);
+      setMessage({ text: "Error sending reset link.", type: "error" });
       console.error("Forgot password error", error);
     }
   };
 
   return (
-    <div className="login-container">
-      <div className="login-box">
+    <div className="forgot-container">
+      <div className="forgot-box">
         <h2>Forgot Password</h2>
-        {message && <p className="info-message">{message}</p>}
+
+        {loading && <p className="info-message">Please wait...</p>}
+        {message && (
+          <p className={`info-message ${message.type}`}>
+            {message.text}
+          </p>
+        )}
+
         <form onSubmit={handleForgotPassword}>
           <input
             type="email"
@@ -35,10 +48,12 @@ const ForgotPassword = () => {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <button type="submit" className="login-button">Send</button>
+          <button type="submit" className="login-button" disabled={loading}>
+            Send
+          </button>
         </form>
 
-        <p className="login-link">
+        <p className="forgot-link">
           <span onClick={() => navigate("/login")} className="link-text">
             Back to Login
           </span>
